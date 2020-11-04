@@ -7,18 +7,17 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${param.username == 'admin' && param.password == 'password'}">
+    <% response.sendRedirect("/profile.jsp"); %>
+</c:if>
 
 <html>
 <head>
-    <title>Title</title>
+    <jsp:include page="partials/head.jsp">
+        <jsp:param name="title" value="Login Page"/>
+    </jsp:include>
 </head>
 <body>
-
-<c:if test="${param.username == 'admin' && param.password == 'password'}">
-    <%! String redirectURL = "http://localhost:8080/profile.jsp"; %>
-    <% response.sendRedirect(redirectURL); %>
-</c:if>
-
 <form method="POST" >
     <input type="text" name="username" placeholder="Enter username">
     <input type="text" name="password" placeholder="Enter password">
